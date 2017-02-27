@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.1-*",
   "dependencies": {
   },
   "frameworks": {
@@ -17,7 +17,17 @@
         "System.Globalization": "4.0.11"
       }
     },
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Numerics": "4.0.0.0"
+      }
+    },
     "net451": {
+      "frameworkAssemblies": {
+        "System.Numerics": "4.0.0.0"
+      }
+    },
+    "net452": {
       "frameworkAssemblies": {
         "System.Numerics": "4.0.0.0"
       }
