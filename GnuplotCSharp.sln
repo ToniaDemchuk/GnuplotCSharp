@@ -1,28 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnuplotCSharp", "GnuplotCSharp.csproj", "{F26034B7-2EB2-49D1-949B-893C74925D53}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{80FB7B71-7998-477E-9098-B46CEE9B519E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57E58A52-27DA-4253-B0C9-2F67724DDF39}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "GnuplotCSharp", "src\GnuplotCSharp\GnuplotCSharp.xproj", "{7863A3E4-B2EE-4D7C-9E05-14246EBD6511}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Debug|x86.ActiveCfg = Debug|x86
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Debug|x86.Build.0 = Debug|x86
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Release|x86.ActiveCfg = Release|x86
-		{F26034B7-2EB2-49D1-949B-893C74925D53}.Release|x86.Build.0 = Release|x86
+		{7863A3E4-B2EE-4D7C-9E05-14246EBD6511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7863A3E4-B2EE-4D7C-9E05-14246EBD6511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7863A3E4-B2EE-4D7C-9E05-14246EBD6511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7863A3E4-B2EE-4D7C-9E05-14246EBD6511}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7863A3E4-B2EE-4D7C-9E05-14246EBD6511} = {80FB7B71-7998-477E-9098-B46CEE9B519E}
 	EndGlobalSection
 EndGlobal

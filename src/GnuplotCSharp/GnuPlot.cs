@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AwokeKnowing.GnuplotCSharp
 {
@@ -21,8 +20,6 @@ namespace AwokeKnowing.GnuplotCSharp
         private List<StoredPlot> SPlotBuffer;
 
         private bool ReplotWithSplot;
-
-        private StreamReader StrRead;
 
         public bool Hold { get; private set; }
 
@@ -154,45 +151,65 @@ namespace AwokeKnowing.GnuplotCSharp
 
         public bool SaveData(double[] Y, string filename)
         {
-            StreamWriter dataStream = new StreamWriter(filename, false);
-            WriteData(Y, dataStream);
-            dataStream.Close();
+            using (var stream = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    WriteData(Y, streamWriter);
+                }
+            }
 
             return true;
         }
 
         public bool SaveData(double[] X, double[] Y, string filename)
         {
-            StreamWriter dataStream = new StreamWriter(filename, false);
-            WriteData(X, Y, dataStream);
-            dataStream.Close();
+            using (var stream = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    WriteData(X, Y, streamWriter);
+                }
+            }
 
             return true;
         }
 
         public bool SaveData(double[] X, double[] Y, double[] Z, string filename)
         {
-            StreamWriter dataStream = new StreamWriter(filename, false);
-            WriteData(X, Y, Z, dataStream);
-            dataStream.Close();
+            using (var stream = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    WriteData(X, Y, Z, streamWriter);
+                }
+            }
 
             return true;
         }
 
         public bool SaveData(int sizeY, double[] Z, string filename)
         {
-            StreamWriter dataStream = new StreamWriter(filename, false);
-            WriteData(sizeY, Z, dataStream);
-            dataStream.Close();
+            using (var stream = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    WriteData(sizeY, Z, streamWriter);
+                }
+            }
 
             return true;
         }
 
         public bool SaveData(double[,] Z, string filename)
         {
-            StreamWriter dataStream = new StreamWriter(filename, false);
-            WriteData(Z, dataStream);
-            dataStream.Close();
+            using (var stream = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    WriteData(Z, streamWriter);
+                }
+            }
 
             return true;
         }
@@ -782,22 +799,26 @@ namespace AwokeKnowing.GnuplotCSharp
 
         private void setContourLabels(string contourFile)
         {
-            var file = new StreamReader(contourFile);
-            string line;
-            while ((line = file.ReadLine()) != null)
+            using (var stream = new FileStream(contourFile, FileMode.Open))
             {
-                if (line.Contains("label:"))
+                using (var reader = new StreamReader(stream))
                 {
-                    string[] c = file.ReadLine().Trim().Replace("   ", " ").Replace("  ", " ").Split(' ');
-                    GnupStWr.WriteLine(
-                        "set object " + ++contourLabelCount + " rectangle center " + c[0] + "," + c[1] + " size char " +
-                        (c[2].ToString().Length + 1) +
-                        ",char 1 fs transparent solid .7 noborder fc rgb \"white\"  front");
-                    GnupStWr.WriteLine(
-                        "set label " + contourLabelCount + " \"" + c[2] + "\" at " + c[0] + "," + c[1] + " front center");
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if (line.Contains("label:"))
+                        {
+                            string[] c = reader.ReadLine().Trim().Replace("   ", " ").Replace("  ", " ").Split(' ');
+                            GnupStWr.WriteLine(
+                                "set object " + ++contourLabelCount + " rectangle center " + c[0] + "," + c[1] + " size char " +
+                                (c[2].ToString().Length + 1) +
+                                ",char 1 fs transparent solid .7 noborder fc rgb \"white\"  front");
+                            GnupStWr.WriteLine(
+                                "set label " + contourLabelCount + " \"" + c[2] + "\" at " + c[0] + "," + c[1] + " front center");
+                        }
+                    }
                 }
             }
-            file.Close();
         }
 
         private void removeContourLabels()
@@ -808,22 +829,27 @@ namespace AwokeKnowing.GnuplotCSharp
             }
         }
 
+        // TODO: check whether wait for file is needed. 
         private bool waitForFile(string filename, int timeout = 10000)
         {
-            Thread.Sleep(20);
+            Task.Delay(20);
             int attempts = timeout / 100;
             StreamReader file = null;
+
             while (file == null)
             {
                 try
                 {
-                    file = new StreamReader(filename);
+                    using (var filestream = new FileStream(filename, FileMode.Open))
+                    {
+                        file = new StreamReader(filestream);
+                    }
                 }
                 catch
                 {
                     if (attempts-- > 0)
                     {
-                        Thread.Sleep(100);
+                        Task.Delay(100);
                     }
                     else
                     {
@@ -831,7 +857,7 @@ namespace AwokeKnowing.GnuplotCSharp
                     }
                 }
             }
-            file.Close();
+
             return true;
         }
 
@@ -854,9 +880,10 @@ namespace AwokeKnowing.GnuplotCSharp
             SPlotBuffer.Clear();
             this.Replot();
         }
+
         public void Close()
         {
-            this.ExtPro.CloseMainWindow();
+            this.ExtPro.Dispose();
         }
 
         /// <summary>
@@ -864,7 +891,7 @@ namespace AwokeKnowing.GnuplotCSharp
         /// </summary>
         public void Dispose()
         {
-            //this.ExtPro.Close();
+            this.Close();
         }
     }
 }
