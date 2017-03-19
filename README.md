@@ -3,6 +3,7 @@ Gnuplot.C#
 [![em-simulation MyGet Build Status](https://www.myget.org/BuildSource/Badge/em-simulation?identifier=59f4d4aa-6259-4b91-9687-063cde5e9642)](https://www.myget.org/)
 
 
+
 Overview
 --------
 Most scientific publications with graphs use gnuplot.  It is extremely well documented and handles 2D, 3D (surface and pointcloud), heatmap, png, jpg, and much more using simple math syntax as well as simple text-based data.  And it supports many output formats, as well interactive zooming/rotating.
@@ -312,5 +313,4 @@ Disclaimer
 Use this code at your own risk.  The author cannot guarantee that it is free of defects or that it will work as you expect.  It's less than 1000 lines of code, so just look at it, and decide if it works for you.
 
 Happy coding!!
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/AwokeKnowing/gnuplotcsharp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
