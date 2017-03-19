@@ -1,5 +1,7 @@
 Gnuplot.C#
 ========
+[![em-simulation MyGet Build Status](https://www.myget.org/BuildSource/Badge/em-simulation?identifier=59f4d4aa-6259-4b91-9687-063cde5e9642)](https://www.myget.org/)
+
 
 Overview
 --------
