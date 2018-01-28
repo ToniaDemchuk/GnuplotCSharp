@@ -12,4 +12,4 @@ script:
 deploy:
     skip_cleanup: true
     provider: script
-    script: deploy.bat
+    script: ./deploy.bat
