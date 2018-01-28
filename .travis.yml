@@ -9,7 +9,9 @@ script:
   - dotnet restore
   - dotnet build -c Release --no-restore
   
+before_deploy: 
+  
 deploy:
     skip_cleanup: true
     provider: script
-    script: sh ./deploy.sh 1.0.0-CI$TRAVIS_BUILD_NUMBER $MYGET_SOURCE $MYGET_APIKEY
+    script: sh ./deploy.sh 2.0.0 $MYGET_SOURCE $MYGET_APIKEY
