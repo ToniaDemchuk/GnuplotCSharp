@@ -11,6 +11,4 @@ script:
   
 deploy:
     provider: script
-    script:
-        - dotnet pack --no-build --include-symbols -c Release /p:Version=1.0.1-CI%TRAVIS_BUILD_NUMBER%  
-        - nuget push ./*.nupkg -Verbosity detailed -ApiKey %MYGET_SOURCE% -Source %MYGET_APIKEY%
+    script: deploy.bat
