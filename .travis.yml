@@ -7,7 +7,7 @@ os: linux
 
 script:
   - dotnet restore
-  - dotnet build -c Release
+  - dotnet build -c Release --no-restore
   
 deploy:
     skip_cleanup: true
