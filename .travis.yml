@@ -14,4 +14,4 @@ before_deploy:
 deploy:
     skip_cleanup: true
     provider: script
-    script: sh ./deploy.sh 2.0.0 $MYGET_SOURCE $MYGET_APIKEY
+    script: sh ./deploy.sh 2.0.1-CI$TRAVIS_BUILD_NUMBER $MYGET_SOURCE $MYGET_APIKEY
