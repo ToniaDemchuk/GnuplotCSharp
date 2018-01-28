@@ -12,4 +12,4 @@ script:
 deploy:
     skip_cleanup: true
     provider: script
-    script: sh ./deploy.sh 1.0.0-CI%TRAVIS_BUILD_NUMBER%
+    script: sh ./deploy.sh 1.0.0-CI$TRAVIS_BUILD_NUMBER
