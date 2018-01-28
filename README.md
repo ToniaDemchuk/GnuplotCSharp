@@ -1,7 +1,7 @@
 Gnuplot.C#
 ========
 [![Build Status](https://travis-ci.org/ToniaDemchuk/GnuplotCSharp.svg?branch=master)](https://travis-ci.org/ToniaDemchuk/GnuplotCSharp)
-[![em-simulation MyGet Build Status](https://www.myget.org/BuildSource/Badge/em-simulation?identifier=59f4d4aa-6259-4b91-9687-063cde5e9642)](https://www.myget.org/)
+[![MyGet](https://img.shields.io/myget/em-simulation/v/GnuplotCSharp.svg)]()
 
 
 
