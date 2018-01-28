@@ -2,8 +2,9 @@ language: csharp
 sudo: false
 dist: trusty
 mono: none
-dotnet: 1.0.0-preview2.1-003177
+dotnet: 2.1.4
 os: linux
 
 script:
-  - dotnet restore && dotnet build */**/project.json -c Release
+  - dotnet restore
+  - dotnet build -c Release
